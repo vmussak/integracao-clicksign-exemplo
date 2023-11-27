@@ -1,5 +1,6 @@
 using Clicksign.Exemplo.Config;
 using Clicksign.Exemplo.Repositories;
+using Clicksign.Exemplo.UseCases.CreateAcceptanceTermUseCase;
 using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,6 +18,8 @@ builder.Configuration.Bind("ClickSign", clickSignConfig);
 builder.Services.AddSingleton(clickSignConfig);
 
 builder.Services.AddHttpClient<IClickSignRepository, ClickSignRepository>();
+
+builder.Services.AddScoped<ICreateAcceptanceTermUseCase, CreateAcceptanceTermUseCase>();
 
 var app = builder.Build();
 
